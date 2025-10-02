@@ -1,10 +1,8 @@
 version: '3.8'
 services:
   php-apache:
-    image: php:8.2-apache
+    build: ./php
     container_name: vokabeltrainer-php
-    volumes:
-      - ./app:/var/www/html
     ports:
       - "8080:80"
     depends_on:
