@@ -1,0 +1,124 @@
+/* Vokabel-Abenteuer – Kids UI (10–12 Jahre) */
+:root{
+  --bg-1:#fff8e7;
+  --primary:#ff7b54;
+  --primary-dark:#ff5a2b;
+  --secondary:#3ec1d3;
+  --accent:#ffd166;
+  --ok:#2ecc71;
+  --bad:#e74c3c;
+  --text:#233142;
+  --card:#ffffffcc;
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0; padding:0;
+  font-family: "Baloo 2", "Comic Neue", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background: linear-gradient(135deg, #fff3d2, #f3fcff);
+  min-height:100%;
+}
+
+body.has-bg{
+  background-image:
+    linear-gradient(0deg, rgba(255,255,255,0.75), rgba(255,255,255,0.75)),
+    var(--bg-image);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.container{
+  max-width: 960px;
+  margin: clamp(12px, 3vw, 24px) auto;
+  padding: 0 16px;
+}
+
+.card{
+  background: var(--card);
+  border: 3px solid var(--secondary);
+  border-radius: 24px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  padding: 20px;
+  backdrop-filter: blur(3px);
+}
+
+.header{
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  margin-bottom: 12px;
+}
+.logo{
+  width:64px; height:64px; border-radius:16px;
+  display:grid; place-items:center; font-size:36px;
+  background: radial-gradient(circle at 30% 30%, var(--secondary), var(--primary));
+  color:white; border:3px solid white; box-shadow:0 6px 10px rgba(0,0,0,.1);
+}
+
+h1{font-size: clamp(28px, 4vw, 40px); margin:0}
+h2{font-size: clamp(22px, 3vw, 28px); margin:12px 0}
+
+.nav{
+  display:flex; gap:12px; flex-wrap:wrap; margin: 10px 0 4px;
+}
+.btn{
+  display:inline-block; text-decoration:none; text-align:center;
+  padding: 12px 16px; border-radius:16px; font-weight:700;
+  border:3px solid var(--text);
+  background: var(--primary);
+  color:#fff; transition: transform .05s ease, filter .15s ease;
+}
+.btn:hover{ filter:brightness(1.05) }
+.btn:active{ transform: translateY(1px) }
+.btn.secondary{ background: var(--secondary) }
+.btn.accent{ background: var(--accent); color:#333 }
+.btn.ok{ background: var(--ok) }
+.btn.bad{ background: var(--bad) }
+
+.form-grid{
+  display:grid; gap:12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+label{font-weight:700}
+input[type="text"]{
+  width:100%; padding:12px 14px; border-radius:14px; border:2px solid #ccc; font-size:18px;
+}
+table{
+  width:100%; border-collapse:separate; border-spacing:0 8px; margin-top:8px;
+}
+th, td{
+  background:white; padding:12px 14px;
+}
+th{
+  background: var(--secondary); color:white; text-align:left; font-size:18px;
+}
+tr td:first-child, tr th:first-child{ border-top-left-radius:12px; border-bottom-left-radius:12px }
+tr td:last-child, tr th:last-child{ border-top-right-radius:12px; border-bottom-right-radius:12px }
+
+.badge{
+  display:inline-block; padding:4px 10px; border-radius:999px; background:var(--accent);
+  border:2px solid var(--text); font-weight:700;
+}
+
+.quiz-card{
+  border:4px dashed var(--primary-dark);
+  background: #fff;
+}
+.quiz-word{
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight:900; letter-spacing: .5px;
+}
+.feedback{
+  margin-top:10px; font-weight:900; padding:10px 14px; border-radius:12px;
+}
+.feedback.ok{ background:#e8f9ef; color:var(--ok); border:2px solid var(--ok)}
+.feedback.bad{ background:#ffecec; color:var(--bad); border:2px solid var(--bad)}
+
+.footer-note{ opacity:.7; font-size:14px; margin-top:10px }
+
+.search-row{
+  display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:8px;
+}
+
+.small{ font-size:14px; opacity:.8 }

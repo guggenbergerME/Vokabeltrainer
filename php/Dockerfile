@@ -1,9 +1,12 @@
 FROM php:8.2-apache
 
-# Apache Rewrite aktivieren (falls später gebraucht)
+# MySQL PDO-Treiber installieren
+RUN docker-php-ext-install pdo pdo_mysql
+
+# (Optional) Apache-Module aktivieren
 RUN a2enmod rewrite
 
-# App-Code in das Apache-Verzeichnis kopieren
+# App in den Container kopieren
 COPY app/ /var/www/html/
 
 # Rechte setzen

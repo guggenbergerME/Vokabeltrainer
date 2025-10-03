@@ -1,22 +1,44 @@
 <?php include 'db.php'; ?>
 <!DOCTYPE html>
 <html lang="de">
-<head><meta charset="UTF-8"><title>Vokabel hinzufügen</title></head>
-<body>
-<h2>Neue Vokabel eingeben</h2>
-<form method="post">
-  Fremdsprache: <input type="text" name="word" required><br>
-  Deutsch: <input type="text" name="translation" required><br>
-  <input type="submit" value="Speichern">
-</form>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vokabel hinzufügen – Vokabel-Abenteuer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body class="has-bg" style="--bg-image: url('assets/bg_greece.jpg');">
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <div class="logo">📜</div>
+        <h2>Neue Vokabel eintragen</h2>
+      </div>
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $stmt = $pdo->prepare("INSERT INTO vocab (word, translation) VALUES (?, ?)");
-    $stmt->execute([$_POST['word'], $_POST['translation']]);
-    echo "<p>Vokabel gespeichert!</p>";
-}
-?>
-<p><a href="index.php">Zurück</a></p>
+      <form method="post" class="form-grid" autocomplete="off">
+        <div>
+          <label for="word">Fremdsprache</label>
+          <input type="text" id="word" name="word" placeholder="z. B. <hello>" required>
+        </div>
+        <div>
+          <label for="translation">Deutsch</label>
+          <input type="text" id="translation" name="translation" placeholder="z. B. Hallo" required>
+        </div>
+        <div>
+          <button class="btn" type="submit">✅ Speichern</button>
+          <a class="btn secondary" href="index.php">🏠 Start</a>
+        </div>
+      </form>
+
+      <?php
+      if ($_SERVER["REQUEST_METHOD"] === "POST") {
+          $stmt = $pdo->prepare("INSERT INTO vocab (word, translation) VALUES (?, ?)");
+          $stmt->execute([$_POST['word'], $_POST['translation']]);
+          echo "<div class='feedback ok'>🎉 Gespeichert! Füge gleich noch eine Vokabel hinzu.</div>";
+      }
+      ?>
+    </div>
+  </div>
 </body>
 </html>
