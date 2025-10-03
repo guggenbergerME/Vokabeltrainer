@@ -1,4 +1,18 @@
-<?php include 'db.php'; ?>
+<?php 
+include 'db.php';
+
+// Prüfen ob eine Lösch-Aktion angefordert wurde
+if (isset($_GET['delete'])) {
+    $id = intval($_GET['delete']);
+    if ($id > 0) {
+        $stmt = $pdo->prepare("DELETE FROM vocab WHERE id = ?");
+        $stmt->execute([$id]);
+    }
+    // Redirect damit kein mehrfaches Löschen durch F5 passiert
+    header("Location: list.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -25,20 +39,31 @@
 
       <table id="vocab-table">
         <thead>
-          <tr><th>Fremdsprache</th><th>Deutsch</th></tr>
+          <tr>
+            <th>Fremdsprache</th>
+            <th>Deutsch</th>
+            <th>Aktion</th>
+          </tr>
         </thead>
         <tbody>
           <?php
-          foreach ($pdo->query("SELECT word, translation FROM vocab ORDER BY word ASC") as $row) {
+          foreach ($pdo->query("SELECT id, word, translation FROM vocab ORDER BY word ASC") as $row) {
+              $id = (int)$row['id'];
               $w = htmlspecialchars($row['word'], ENT_QUOTES, 'UTF-8');
               $t = htmlspecialchars($row['translation'], ENT_QUOTES, 'UTF-8');
-              echo "<tr><td>$w</td><td>$t</td></tr>";
+              echo "<tr>
+                      <td>$w</td>
+                      <td>$t</td>
+                      <td>
+                        <a class='btn bad small' href='list.php?delete=$id' onclick=\"return confirm('Willst du \"$w\" wirklich löschen?')\">❌ Löschen</a>
+                      </td>
+                    </tr>";
           }
           ?>
         </tbody>
       </table>
 
-      <p class="footer-note">Tipp: Tippe in die Suche, um die Liste zu filtern.</p>
+      <p class="footer-note">Tipp: Tippe in die Suche, um die Liste zu filtern. Einzelne Vokabeln kannst du mit ❌ entfernen.</p>
       <div class="nav">
         <a class="btn" href="index.php">🏠 Start</a>
       </div>

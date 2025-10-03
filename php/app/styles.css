@@ -109,6 +109,13 @@ tr td:last-child, tr th:last-child{ border-top-right-radius:12px; border-bottom-
   font-size: clamp(26px, 5vw, 40px);
   font-weight:900; letter-spacing: .5px;
 }
+
+.btn.small {
+  font-size:14px;
+  padding:6px 10px;
+  border-radius:10px;
+}
+
 .feedback{
   margin-top:10px; font-weight:900; padding:10px 14px; border-radius:12px;
 }
