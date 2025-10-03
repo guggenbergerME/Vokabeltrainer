@@ -8,7 +8,6 @@ if (isset($_GET['delete'])) {
         $stmt = $pdo->prepare("DELETE FROM vocab WHERE id = ?");
         $stmt->execute([$id]);
     }
-    // Redirect damit kein mehrfaches Löschen durch F5 passiert
     header("Location: list.php");
     exit;
 }
@@ -21,6 +20,27 @@ if (isset($_GET['delete'])) {
   <title>Vokabelliste – Vokabel-Abenteuer</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Popup Overlay */
+    .overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex; justify-content:center; align-items:center;
+      visibility: hidden; opacity:0;
+      transition: opacity .2s ease;
+      z-index: 1000;
+    }
+    .overlay.show { visibility: visible; opacity:1; }
+    .popup {
+      background: white; border-radius: 20px; padding: 20px;
+      max-width: 320px; text-align:center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      animation: pop .2s ease;
+    }
+    @keyframes pop { from{ transform:scale(.8)} to{transform:scale(1)} }
+    .popup h3 { margin: 0 0 12px }
+    .popup .btn { margin: 6px }
+  </style>
 </head>
 <body class="has-bg" style="--bg-image: url('assets/bg_rome.jpg');">
   <div class="container">
@@ -55,7 +75,7 @@ if (isset($_GET['delete'])) {
                       <td>$w</td>
                       <td>$t</td>
                       <td>
-                        <a class='btn bad small' href='list.php?delete=$id' onclick=\"return confirm('Willst du \"$w\" wirklich löschen?')\">❌ Löschen</a>
+                        <button class='btn bad small delete-btn' data-id='$id' data-word='$w'>❌ Löschen</button>
                       </td>
                     </tr>";
           }
@@ -70,6 +90,17 @@ if (isset($_GET['delete'])) {
     </div>
   </div>
 
+  <!-- Popup Overlay -->
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <h3 id="popup-text">Soll diese Vokabel gelöscht werden?</h3>
+      <div>
+        <a href="#" id="confirm-delete" class="btn bad">Ja, löschen</a>
+        <button id="cancel" class="btn secondary">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const search = document.getElementById('search');
     const rows = Array.from(document.querySelectorAll('#vocab-table tbody tr'));
@@ -79,6 +110,23 @@ if (isset($_GET['delete'])) {
         const text = tr.innerText.toLowerCase();
         tr.style.display = text.includes(q) ? '' : 'none';
       });
+    });
+
+    // Popup-Logik
+    const overlay = document.getElementById('overlay');
+    const popupText = document.getElementById('popup-text');
+    const confirmLink = document.getElementById('confirm-delete');
+    document.querySelectorAll('.delete-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.id;
+        const word = btn.dataset.word;
+        popupText.innerHTML = "Willst du <b>" + word + "</b> wirklich löschen?";
+        confirmLink.href = "list.php?delete=" + id;
+        overlay.classList.add('show');
+      });
+    });
+    document.getElementById('cancel').addEventListener('click', () => {
+      overlay.classList.remove('show');
     });
   </script>
 </body>
