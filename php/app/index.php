@@ -38,6 +38,7 @@ $bodyClass = $bg ? "has-bg" : "";
     </div>
 
     <p class="footer-note">Hinweis für Lehrkräfte/Eltern: kindgerechte Schriften, hohe Kontraste, große Touch-Ziele.</p>
+    <li><a href="export.php" class="btn accent">💾 Backup herunterladen</a></li>
   </div>
 </body>
 </html>
