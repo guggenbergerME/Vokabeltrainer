@@ -32,13 +32,14 @@ $bodyClass = $bg ? "has-bg" : "";
         <a class="btn" href="quiz.php">🎲 Quiz starten</a>
         <a class="btn secondary" href="add.php">➕ Vokabel eingeben</a>
         <a class="btn accent" href="list.php">📚 Vokabelliste</a>
+        <a class="btn accent" href="export.php" >💾 Backup herunterladen</a>
       </div>
 
       <p style="margin-top:12px">Tipp: Spiele jeden Tag 5 Minuten. Sammle <span class="badge">richtige Antworten</span> wie Lorbeerkränze! 🏅</p>
     </div>
 
     <p class="footer-note">Hinweis für Lehrkräfte/Eltern: kindgerechte Schriften, hohe Kontraste, große Touch-Ziele.</p>
-    <li><a href="export.php" class="btn accent">💾 Backup herunterladen</a></li>
+    
   </div>
 </body>
 </html>
