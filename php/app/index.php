@@ -32,6 +32,7 @@
         <a class="btn accent" href="list.php">📚 Vokabelliste</a>
         <a class="btn" href="quiz.php">🎲 Quiz starten</a>
         <a class="btn" href="export.php">💾 Backup herunterladen</a>
+        <a class="btn" href="import.php">📥 Vokabeln importieren</a>
       </div>
     </div>
   </div>

@@ -87,6 +87,7 @@ $vocabList = $stmt->fetchAll();
                 <td><?= htmlspecialchars($row['word']) ?></td>
                 <td><?= htmlspecialchars($row['translation']) ?></td>
                 <td>
+                  <a class="btn small" href="edit.php?id=<?= $row['id'] ?>">✏️</a>
                   <a class="btn bad small"
                      href="list.php?delete=<?= $row['id'] ?>"
                      onclick="return confirm('Willst du <?= htmlspecialchars($row['word']) ?> wirklich löschen?')">❌</a>
