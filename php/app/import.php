@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["file"])) {
       <input type="file" name="file" accept=".csv" required>
       <button class="btn" type="submit">📂 Import starten</button>
     </form>
-    <p>Erwartetes Format: <code>Fremdsprache;Deutsch;Sprache</code></p>
+    <p>Erwartetes Format: <code>-> Fremdwort | Deutsche Übersetzung | Fremdsprache <-</code></p>
     <a class="btn secondary" href="index.php">🏠 Start</a>
   </div>
 </div>
