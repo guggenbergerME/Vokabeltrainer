@@ -11,3 +11,5 @@
 - vokabelliste  suchergebnisse auf mehrere seiten
 
 - start button vokabelliste
+- hinweis oder lösung bei quiz
+
