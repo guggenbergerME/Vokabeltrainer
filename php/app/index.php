@@ -1,45 +1,39 @@
-<?php
-// optional: wähle hier, welches Hintergrundbild genutzt wird:
-$bg = "rome"; // "rome" | "greece" | "" (leer für kein Bild)
-$bgCss = "";
-if ($bg === "rome")  $bgCss = "--bg-image: url('assets/bg_rome.jpg');";
-if ($bg === "greece")$bgCss = "--bg-image: url('assets/bg_greece.jpg');";
-$bodyClass = $bg ? "has-bg" : "";
-?>
+<?php include 'db.php'; ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vokabel-Abenteuer</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet">
-  <style>:root{<?= $bgCss ?>}</style>
 </head>
-<body class="<?= $bodyClass ?>">
+<body class="has-bg" style="--bg-image: url('assets/<?= getBackgroundForLanguage() ?>');">
   <div class="container">
     <div class="card">
       <div class="header">
         <div class="logo">🏛️</div>
-        <div>
-          <h1>Vokabel-Abenteuer</h1>
-          <div class="small">Lerne wie die Gelehrten im alten Rom & Griechenland!</div>
-        </div>
+        <h1>Vokabel-Abenteuer</h1>
       </div>
+
+      <h2>Wähle deine Sprache:</h2>
+      <div class="nav">
+        <a class="btn" href="?lang=Latein">🇱🇦 Latein</a>
+        <a class="btn" href="?lang=Italienisch">🇮🇹 Italienisch</a>
+        <a class="btn" href="?lang=Griechisch">🇬🇷 Griechisch</a>
+        <a class="btn" href="?lang=Englisch">🇬🇧 Englisch</a>
+        <a class="btn accent" href="?lang=Alle">🌍 Alle Sprachen</a>
+      </div>
+
+      <p>Aktuelle Sprache: <b><?= htmlspecialchars(currentLanguage()) ?></b></p>
 
       <div class="nav">
-        <a class="btn" href="quiz.php">🎲 Quiz starten</a>
-        <a class="btn secondary" href="add.php">➕ Vokabel eingeben</a>
+        <a class="btn secondary" href="add.php">➕ Neue Vokabel</a>
         <a class="btn accent" href="list.php">📚 Vokabelliste</a>
-        <a class="btn accent" href="export.php" >💾 Backup herunterladen</a>
+        <a class="btn" href="quiz.php">🎲 Quiz starten</a>
+        <a class="btn" href="export.php">💾 Backup herunterladen</a>
       </div>
-
-      <p style="margin-top:12px">Tipp: Spiele jeden Tag 5 Minuten. Sammle <span class="badge">richtige Antworten</span> wie Lorbeerkränze! 🏅</p>
     </div>
-
-    <p class="footer-note">Hinweis für Lehrkräfte/Eltern: kindgerechte Schriften, hohe Kontraste, große Touch-Ziele.</p>
-    
   </div>
 </body>
 </html>
