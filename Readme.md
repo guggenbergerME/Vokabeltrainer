@@ -2,7 +2,12 @@
 
 ## ToDO
 
-- Vokabel lernen mit mehrene Sprachen möglich
-- Vokabel Übung einer sprache und gemischt.
-
 - Punkte für Übungsergebnisse. (Pergamentrolle)
+
+- vokabelliste als pdf drucken
+
+- vokabel ändern
+
+- vokabelliste  suchergebnisse auf mehrere seiten
+
+- start button vokabelliste
