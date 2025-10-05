@@ -12,6 +12,7 @@ services:
       - MYSQL_USER=vokabel
       - MYSQL_PASSWORD=geheim
       - MYSQL_DATABASE=vokabeltrainer
+    restart: always
 
   db:
     image: mariadb:11

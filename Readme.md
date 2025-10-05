@@ -37,6 +37,16 @@ chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 ```
 
+## Docker Befehle
+
+Projekt bauen
+
+    docker compose up -d --build
+
+Projekt starten
+
+    docker compose up -d
+
 ## ToDO
 
 - Punkte für Übungsergebnisse. (Pergamentrolle)
