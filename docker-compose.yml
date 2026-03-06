@@ -24,7 +24,7 @@ services:
       - MYSQL_USER=vokabel
       - MYSQL_PASSWORD=geheim
     volumes:
-      - db_data:/var/lib/mysql
+      - ${DATA_DIR:-./data}/mysql:/var/lib/mysql
       - ./db_init:/docker-entrypoint-initdb.d
 
   phpmyadmin:
@@ -37,6 +37,3 @@ services:
       - PMA_HOST=db
       - PMA_USER=vokabel
       - PMA_PASSWORD=geheim
-
-volumes:
-  db_data:
